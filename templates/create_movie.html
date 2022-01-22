@@ -1,0 +1,44 @@
+{% extends 'movies_table.html' %}
+{% block create_movie %}
+<form action="#" method="post">
+    <div class="form-group">
+        <label for="title">Title of the movie</label>
+        <input type="text" class="form-control" id="title" placeholder="Spider-man" name="title">
+    </div>
+    <div class="form-group">
+        <label for="cat">Category of the movie</label>
+        <input type="text" class="form-control" id="cat" placeholder="Action" name="category">
+    </div>
+    <div class="form-group">
+        <label for="year">Year when the movie was released</label>
+        <select class="form-control" id="year" name="year">
+            <option>1993</option>
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating of the movie</label>
+        <select class="form-control" id="rating" name="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="director">Example multiple select</label>
+        <select multiple class="form-control" id="director" name="director">
+            {% for director in directors %}
+            <option value="{{director.director_id}}">{{director.name}} {{director.surname}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}

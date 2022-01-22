@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block movies_table %}
+<div class="row">
+    <div class="col-8">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Kelints</th>
+                <th scope="col">Pavadinimas</th>
+                <th scope="col">Metai</th>
+                <th scope="col">Kategorija</th>
+                <th scope="col">Ratingas</th>
+                <th scope="col">Direktorius</th>
+                <th scope="col" colspan="2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for movie in movies %}
+            <tr>
+                <th scope="row">{{movie.movie_id}}</th>
+                <td>{{movie.title}}</td>
+                <td>{{movie.year}}</td>
+                <td>{{movie.category}}</td>
+                <td>{{movie.rating}}</td>
+                <td>{{movie.director.name}}</td>
+                <td>
+                    <button class="btn btn-success"}><a href="http://127.0.0.1:5000/movies/update/{{movie.movie_id}}">Update</a></button>
+                </td>
+                <td>
+                    <form action="{{url_for('delete_movie', movie_id = movie.movie_id)}}" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+    {% block create_movie %}{% endblock %}
+    {% block update_movie %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

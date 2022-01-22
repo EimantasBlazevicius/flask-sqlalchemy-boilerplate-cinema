@@ -1,0 +1,47 @@
+{% extends 'movies_table.html' %}
+{% block update_movie %}
+<form action="http://127.0.0.1:5000/movies/update/{{movie_to_be_updated.movie_id}}" method="post">
+    <div class="form-group">
+        <label for="title">Title of the movie</label>
+        <input type="text" class="form-control" id="title" placeholder="Spider-man" name="title"
+               value="{{movie_to_be_updated.title}}">
+    </div>
+    <div class="form-group">
+        <label for="cat">Category of the movie</label>
+        <input type="text" class="form-control" id="cat" placeholder="Action" name="category"
+               value="{{movie_to_be_updated.category}}">
+    </div>
+    <div class="form-group">
+        <label for="year">Year when the movie was released</label>
+        <select class="form-control" id="year" name="year">
+            <option {% if movie_to_be_updated.year==1994 %} selected="selected" {% endif %}>1994</option>
+            <option {% if movie_to_be_updated.year==2009 %} selected="selected" {% endif %}>2009</option>
+            <option {% if movie_to_be_updated.year==2020 %} selected="selected" {% endif %}>2020</option>
+            <option {% if movie_to_be_updated.year==2021 %} selected="selected" {% endif %}>2021</option>
+            <option {% if movie_to_be_updated.year==2022 %} selected="selected" {% endif %}>2022</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating of the movie</label>
+        <select class="form-control" id="rating" name="rating">
+            <option {% if movie_to_be_updated.rating==1 %} selected="selected" {% endif %}>1</option>
+            <option {% if movie_to_be_updated.rating==2 %} selected="selected" {% endif %}>2</option>
+            <option {% if movie_to_be_updated.rating==3 %} selected="selected" {% endif %}>3</option>
+            <option {% if movie_to_be_updated.rating==4 %} selected="selected" {% endif %}>4</option>
+            <option {% if movie_to_be_updated.rating==5 %} selected="selected" {% endif %}>5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="director">Example multiple select</label>
+        <select multiple class="form-control" id="director" name="director">
+            {% for director in directors %}
+            <option value="{{director.director_id}}" {% if
+                    movie_to_be_updated.director.director_id==director.director_id %} selected="selected" {% endif %}>
+                {{director.name}} {{director.surname}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="btn btn-info" type="submit">Update</button>
+</form>
+{% endblock %}
