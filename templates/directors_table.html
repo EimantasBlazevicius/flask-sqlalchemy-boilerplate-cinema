@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block directors_table %}
+<div class="row">
+    <div class="col-8">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Kelints</th>
+                <th scope="col">Vardas</th>
+                <th scope="col">Pavardė</th>
+                <th scope="col">Reitingas</th>
+                <th scope="col">Populiariausias filmas</th>
+                <th scope="col" colspan="2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dir in directors %}
+            <tr>
+                <th scope="row">{{dir.director_id}}</th>
+                <td>{{dir.name}}</td>
+                <td>{{dir.surname}}</td>
+                <td>{{dir.rating}}</td>
+                <td>{{dir}}</td>
+                <td>
+                    <button class="btn btn-success"><a style="color: white; text-decoration: none;" href="http://127.0.0.1:5000/directors/update/{{dir.director_id}}">Update</a>
+                    </button>
+                </td>
+                <td>
+                    <form action="{{url_for('delete_director', dir_id = dir.director_id)}}" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        {% block create_director %}{% endblock %}
+        {% block update_director %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

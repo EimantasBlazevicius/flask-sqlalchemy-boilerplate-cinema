@@ -1,0 +1,24 @@
+{% extends 'directors_table.html' %}
+{% block create_director %}
+<form action="#" method="post">
+    <div class="form-group">
+        <label for="title">Name of the Director</label>
+        <input type="text" class="form-control" id="title" placeholder="Joshua" name="name">
+    </div>
+    <div class="form-group">
+        <label for="cat">Surname of the director</label>
+        <input type="text" class="form-control" id="cat" placeholder="Wisseman" name="surname">
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating of the Director</label>
+        <select class="form-control" id="rating" name="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}

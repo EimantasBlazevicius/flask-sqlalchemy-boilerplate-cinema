@@ -25,7 +25,8 @@
                 <td>{{movie.rating}}</td>
                 <td>{{movie.director.name}}</td>
                 <td>
-                    <button class="btn btn-success"}><a href="http://127.0.0.1:5000/movies/update/{{movie.movie_id}}">Update</a></button>
+                    <button class="btn btn-success"><a style="color: white; text-decoration: none;" href="http://127.0.0.1:5000/movies/update/{{movie.movie_id}}">Update</a>
+                    </button>
                 </td>
                 <td>
                     <form action="{{url_for('delete_movie', movie_id = movie.movie_id)}}" method="post">
@@ -39,8 +40,8 @@
         </table>
     </div>
     <div class="col-4">
-    {% block create_movie %}{% endblock %}
-    {% block update_movie %}{% endblock %}
+        {% block create_movie %}{% endblock %}
+        {% block update_movie %}{% endblock %}
     </div>
 </div>
 {% endblock %}

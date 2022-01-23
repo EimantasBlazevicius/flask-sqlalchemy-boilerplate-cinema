@@ -16,7 +16,13 @@ class Directors(Base):
     movies = relationship('Movies', back_populates='director', cascade="all, delete")
 
     def __repr__(self):
-        return f'{self.name}'
+        max = ''
+        rating= 0
+        for movie in self.movies:
+            if movie.rating >= rating and movie.director_id == self.director_id:
+                rating = movie.rating
+                max = movie.title
+        return f'{max}'
 
 
 class Movies(Base):
@@ -31,7 +37,7 @@ class Movies(Base):
     director = relationship('Directors', back_populates='movies')
 
     def __repr__(self):
-        return f'Title: {self.title}, belongs to the category: {self.category}'
+        return {self.rating: self.title}
 
 
 Base.metadata.create_all(eng)
