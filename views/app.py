@@ -27,6 +27,14 @@ def movies():
         return redirect(url_for('movies'))
 
 
+@app.route("/movie/<movie_id>", methods=["GET"])
+def movie_page(movie_id):
+    the_movies = session.query(cinema.Movies).get(movie_id)
+
+    return render_template('movie_page.html', movie=the_movies)
+
+
+
 @app.route("/directors", methods=["GET", "POST"])
 def directors():
     if request.method == "GET":
